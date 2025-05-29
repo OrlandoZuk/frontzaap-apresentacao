@@ -155,6 +155,27 @@
             <div class="cta-buttons">
                 <button class="cta-button" id="cta-demo">Agendar Demonstração Personalizada</button>
                 <button class="cta-button" id="cta-proposal">Receber Proposta de Implementação</button>
+          <script>
+              // Número do WhatsApp no formato internacional, sem + ou espaços
+  const numeroWhatsApp = "5577999440705"; 
+
+  // Mensagens pré-definidas para cada botão
+  const mensagens = {
+    "cta-demo": "Olá, quero agendar uma demonstração personalizada.",
+    "cta-proposal": "Olá, gostaria de receber uma proposta de implementação."
+  };
+
+  // Função para abrir WhatsApp no clique
+  function abrirWhatsApp(idBotao) {
+    const mensagem = encodeURIComponent(mensagens[idBotao]);
+    const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+    window.open(url, "_blank");
+  }
+
+  // Adiciona evento de clique aos botões
+  document.getElementById("cta-demo").addEventListener("click", () => abrirWhatsApp("cta-demo"));
+  document.getElementById("cta-proposal").addEventListener("click", () => abrirWhatsApp("cta-proposal"));
+</script>
             </div>
         </section>
 
