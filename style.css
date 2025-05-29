@@ -1,268 +1,386 @@
-/* Estilos Gerais */
+/* Variáveis para cores e fontes */
+:root {
+  --color-primary: #02665e;      /* Verde moderno */
+  --color-primary-light: #02897a;
+  --color-primary-dark: #014d40;
+  --color-accent: #ff8f00;       /* Laranja CTA */
+  --color-accent-dark: #e65100;
+  --color-bg: #f9fbfb;
+  --color-bg-alt: #ffffff;
+  --color-text: #2c3e50;
+  --color-text-light: #556677;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Reset básico e tipografia */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-    font-family: sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f7f6;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Container principal */
 .presentation-container {
-    width: 90%;
-    max-width: 900px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    position: relative; /* Para posicionamento absoluto dos slides */
-    min-height: 500px; /* Altura mínima para visualização */
-    display: flex; /* Para garantir que apenas o slide ativo seja visível */
+  width: 90%;
+  max-width: 960px;
+  background: var(--color-bg-alt);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease;
 }
 
+.presentation-container:hover {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Slides */
 .slide {
-    padding: 40px;
-    box-sizing: border-box;
-    display: none; /* Esconde todos os slides por padrão */
-    width: 100%;
-    animation: fadeIn 0.5s ease-in-out;
+  padding: 48px 48px 40px;
+  display: none;
+  width: 100%;
+  animation: fadeInScale 0.5s ease forwards;
+  opacity: 0;
+  transform: scale(0.98);
 }
 
 .slide.active {
-    display: block; /* Mostra apenas o slide ativo */
+  display: block;
+  opacity: 1;
+  transform: scale(1);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
+/* Tipografia */
 h1, h2, h3 {
-    color: #00796b; /* Verde azulado FrontZaap */
-    margin-bottom: 15px;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-feature-settings: "liga" 1;
 }
 
 h1 {
-    font-size: 2.2em;
-    text-align: center;
+  font-size: 2.75rem;
+  text-align: center;
+  margin-top: 0;
 }
 
 h2 {
-    font-size: 1.8em;
-    border-bottom: 2px solid #b2dfdb; /* Linha sutil abaixo do H2 */
-    padding-bottom: 5px;
-    margin-bottom: 25px;
+  font-size: 2.125rem;
+  border-bottom: 3px solid var(--color-primary-light);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 h3 {
-    font-size: 1.4em;
-    color: #004d40; /* Verde mais escuro */
+  font-size: 1.5rem;
+  color: var(--color-primary-dark);
 }
 
 p {
-    margin-bottom: 15px;
-    color: #555;
+  margin-bottom: 1.25rem;
+  color: var(--color-text-light);
+  font-weight: 400;
+  font-size: 1rem;
 }
 
+/* Listas */
 ul {
-    list-style: disc;
-    margin-left: 20px;
-    margin-bottom: 20px;
+  list-style: disc inside;
+  margin-bottom: 2rem;
+  color: var(--color-text-light);
+  font-size: 1rem;
 }
 
 li {
-    margin-bottom: 10px;
+  margin-bottom: 0.75rem;
 }
 
+/* Destaques */
 .highlight {
-    font-weight: bold;
-    color: #00796b;
+  font-weight: 700;
+  color: var(--color-primary);
 }
 
 .intermediary-focus {
-    font-style: italic;
-    color: #004d40;
-    text-align: center;
-    margin-top: 10px;
-    font-weight: bold;
+  font-style: italic;
+  color: var(--color-primary-dark);
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .intermediary-focus-section {
-    background-color: #e0f2f1; /* Fundo levemente destacado */
-    border-left: 5px solid #00796b;
-    padding-left: 35px;
+  background-color: #d6f0ec;
+  border-left: 6px solid var(--color-primary);
+  padding-left: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 0 8px 8px 0;
 }
 
+/* Imagens */
 .screenshot {
-    display: block;
-    max-width: 70%;
-    height: auto;
-    margin: 20px auto;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+  display: block;
+  max-width: 75%;
+  height: auto;
+  margin: 2rem auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(2, 102, 94, 0.15);
+  transition: transform 0.3s ease;
 }
 
-/* Funcionalidades - Abas */
+.screenshot:hover {
+  transform: scale(1.02);
+}
+
+/* Abas */
 .features-tabs {
-    margin-top: 30px;
+  margin-top: 3rem;
 }
 
 .tab-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e0e7e9;
 }
 
 .tab-button {
-    padding: 10px 15px;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    margin-right: 5px;
-    margin-bottom: -1px; /* Alinha com a borda inferior */
-    border-bottom: 3px solid transparent;
-    font-size: 0.95em;
-    color: #555;
-    transition: all 0.3s ease;
+  padding: 12px 20px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  margin-right: 10px;
+  margin-bottom: -2px;
+  font-size: 1rem;
+  color: var(--color-text-light);
+  border-bottom: 3px solid transparent;
+  font-weight: 600;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px 4px 0 0;
 }
 
 .tab-button:hover {
-    background-color: #eee;
+  color: var(--color-primary-light);
+  background-color: #f1f7f6;
 }
 
 .tab-button.active {
-    border-bottom: 3px solid #00796b;
-    font-weight: bold;
-    color: #00796b;
+  border-bottom: 3px solid var(--color-primary);
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: #e6f2f1;
 }
 
+/* Conteúdo da aba */
 .tab-content {
-    display: none;
-    padding: 20px;
-    border: 1px solid #eee;
-    border-top: none;
-    background-color: #fafafa;
-    animation: fadeIn 0.4s ease;
+  display: none;
+  padding: 2rem;
+  border: 1px solid #e0e7e9;
+  border-top: none;
+  background-color: #f9fcfb;
+  animation: fadeInScale 0.4s ease forwards;
 }
 
 .tab-content.active {
-    display: block;
+  display: block;
 }
 
 /* Planos */
 .plans {
-    display: flex;
-    justify-content: space-around;
-    margin: 30px 0;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
 .plan {
-    border: 1px solid #b2dfdb;
-    border-radius: 5px;
-    padding: 20px;
-    width: 45%;
-    margin-bottom: 15px;
-    background-color: #f8fdfd;
-    text-align: center;
+  border: 1px solid #c1ded9;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 45%;
+  background-color: #f0fcfb;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(2, 102, 94, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.plan:hover {
+  box-shadow: 0 12px 32px rgba(2, 102, 94, 0.15);
 }
 
 .plan h3 {
-    margin-top: 0;
+  margin-top: 0;
+  font-weight: 700;
+  color: var(--color-primary-dark);
 }
 
 .plan p em {
-    font-weight: bold;
-    color: #00796b;
-    display: block;
-    margin-top: 10px;
+  font-weight: 700;
+  color: var(--color-primary);
+  display: block;
+  margin-top: 1rem;
 }
 
 /* Botões CTA */
 .cta-question {
-    text-align: center;
-    font-size: 1.2em;
-    margin-top: 30px;
-    font-weight: bold;
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 3rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
 }
 
 .cta-buttons {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 1.5rem;
 }
 
 .cta-button {
-    background-color: #ff8f00; /* Laranja para destaque CTA */
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    margin: 0 10px;
-    transition: background-color 0.3s ease;
+  background-color: var(--color-accent);
+  color: #fff;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin: 0 12px;
+  font-weight: 600;
+  box-shadow: 0 6px 15px rgba(255, 143, 0, 0.35);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
 }
 
-.cta-button:hover {
-    background-color: #e65100; /* Laranja mais escuro */
+.cta-button:hover,
+.cta-button:focus {
+  background-color: var(--color-accent-dark);
+  box-shadow: 0 8px 20px rgba(230, 81, 0, 0.6);
+  transform: translateY(-3px);
+  outline: none;
 }
 
 /* Navegação */
 .navigation {
-    margin-top: 20px;
-    text-align: center;
+  margin-top: 2rem;
+  text-align: center;
 }
 
 .navigation button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    cursor: pointer;
-    background-color: #00796b;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+  padding: 12px 26px;
+  margin: 0 12px;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(2, 102, 94, 0.3);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .navigation button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+  background-color: #cbd6d4;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .navigation button:not(:disabled):hover {
-    background-color: #004d40;
+  background-color: var(--color-primary-dark);
 }
 
+/* Indicador de slide */
 #slideIndicator {
-    font-weight: bold;
-    color: #555;
+  font-weight: 700;
+  color: var(--color-text-light);
+  font-size: 1rem;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    h1 { font-size: 1.8em; }
-    h2 { font-size: 1.5em; }
-    .presentation-container { width: 95%; min-height: 400px; }
-    .slide { padding: 25px; }
-    .screenshot { max-width: 90%; }
-    .plans { flex-direction: column; align-items: center; }
-    .plan { width: 80%; }
-    .tab-button { font-size: 0.9em; padding: 8px 10px; }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+  .presentation-container {
+    width: 95%;
+    min-height: 420px;
+  }
+  .slide {
+    padding: 32px 32px 24px;
+  }
+  .screenshot {
+    max-width: 90%;
+  }
+  .plans {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .plan {
+    width: 100%;
+  }
+  .tab-button {
+    font-size: 0.95rem;
+    padding: 10px 14px;
+  }
+  .navigation button {
+    padding: 10px 22px;
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
-    h1 { font-size: 1.5em; }
-    h2 { font-size: 1.3em; }
-    .slide { padding: 20px; }
-    .cta-button { display: block; margin: 10px auto; width: 80%; }
-    .navigation button { padding: 8px 15px; font-size: 0.9em; }
-    .tab-buttons { justify-content: center; }
+  h1 {
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  .slide {
+    padding: 24px 24px 16px;
+  }
+  .cta-button {
+    display: block;
+    margin: 12px auto;
+    width: 85%;
+  }
+  .navigation button {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+  .tab-buttons {
+    justify-content: center;
+  }
 }
-
